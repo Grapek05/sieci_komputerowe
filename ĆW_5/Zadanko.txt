@@ -1,0 +1,89 @@
+ZADANIA: PODSTAWOWE POLECENIA SIECIOWE
+ 
+1. Lista interfejsów sieciowych (nazwa-status)
+Źródło: polecenie 'ip -br link'
+Odpowiedź:
+lo               UNKNOWN
+enp0s3           UP
+wlan0            DOWN
+ 
+2. Adres MAC routera (bramy domyślnej)
+Źródło: polecenie 'ip route show' (identyfikacja IP bramy) oraz 'ip neigh' lub 'arp -an'
+Odpowiedź: 
+(dla bramy 192.168.1.1): 192.168.1.1 dev enp0s3 lladdr 00:1a:2b:3c:4d:5e REACHABLE
+ 
+3. Zmiana adresu MAC karty sieciowej
+Źródło: polecenia 'ip link set dev eth0 down', 'ip link set dev eth0 address XX:XX:XX:XX:XX:XX', 'ip link set dev eth0 up'
+Odpowiedź: Wynik nie zwraca tekstu przy powodzeniu. Weryfikacja przez 'ip link show eth0' wykazuje nowy parametr link/ether.
+ 
+4. Ping wszystkich urządzeń jednocześnie w podsieci
+Źródło: polecenie 'fping -g 192.168.1.0/24' lub 'nmap -sn 192.168.1.0/24'
+Odpowiedź: 
+192.168.1.1 is alive
+192.168.1.15 is alive
+192.168.1.20 is alive
+ 
+5. Skan podsieci w poszukiwaniu otwartego portu 22 (SSH)
+Źródło: polecenie 'nmap -p 22 192.168.1.0/24'
+Odpowiedź:
+Nmap scan report for 192.168.1.10
+Host is up.
+PORT   STATE SERVICE
+22/tcp open  ssh
+ 
+6. Skan wszystkich portów na interfejsie lo (loopback)
+Źródło: polecenie 'nmap -p- 127.0.0.1'
+Odpowiedź:
+Not shown: 65532 closed ports
+PORT     STATE SERVICE
+53/tcp   open  domain
+631/tcp  open  ipp
+3306/tcp open  mysql
+ 
+7. Porty otwarte wraz z PID i nazwą programu
+Źródło: polecenie 'ss -tulpn' lub 'netstat -tulpn' (wymaga sudo dla PID)
+Odpowiedź:
+Netid  State   Recv-Q Send-Q Local Address:Port  Process
+tcp    LISTEN  0      128    0.0.0.0:22          users:(("sshd",pid=1024,fd=3))
+ 
+8. Wyświetlenie trasy domyślnej
+Źródło: polecenie 'ip route show default'
+Odpowiedź: default via 192.168.1.1 dev enp0s3 proto dhcp metric 100
+ 
+9. Trasa pakietów do serwera kosmatka.pl
+Źródło: polecenie 'traceroute kosmatka.pl'
+Odpowiedź:
+ 1  gateway (192.168.1.1)  1.231 ms
+ 2  80.50.120.1 (80.50.120.1)  15.420 ms
+ ...
+ 8  kosmatka.pl (91.227.123.45) 22.110 ms
+ 
+10. Adres serwera DNS w systemie
+Źródło: plik '/etc/resolv.conf' lub polecenie 'resolvectl status'
+Odpowiedź: nameserver 8.8.8.8
+ 
+11. Lista statycznych wpisów DNS
+Źródło: plik '/etc/hosts'
+Odpowiedź:
+127.0.0.1   localhost
+192.168.1.10 moj-serwer.local
+ 
+12. Rekord MX (poczta) dla kosmatka.pl przez serwer 8.8.8.8
+Źródło: polecenie 'dig @8.8.8.8 kosmatka.pl MX'
+Odpowiedź:
+;; ANSWER SECTION:
+kosmatka.pl.  3600  IN  MX  10 mail.kosmatka.pl.
+ 
+13. Adres IPv6 hosta google.pl
+Źródło: polecenie 'dig google.pl AAAA +short'
+Odpowiedź: 2a00:1450:401b:802::2003
+ 
+14. Dane rejestracji domeny kosmatka.pl
+Źródło: polecenie 'whois kosmatka.pl'
+Odpowiedź:
+created: 2012.05.20 14:20:10
+expiration date: 2026.05.20 14:20:10
+ 
+15. Lista domen .pl usuniętych dzisiaj
+Źródło: strona NASK (dns.pl)
+Odpowiedź: https://www.dns.pl/lista_domen_usunietych
