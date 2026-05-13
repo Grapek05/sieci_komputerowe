@@ -1,0 +1,31 @@
+# zatrzymanie menedżera sieci.
+sudo systemctl stop NetworkManager
+
+# usunięcie adresów IP z interfejsów fizycznych.
+sudo ip addr flush dev eth0
+sudo ip addr flush dev eth1
+
+# tworzenie mostka br0 (z użyciem polecenia ip).
+sudo ip link add name br0 type bridge
+
+# przypisanie kart fizycznych do mostka.
+sudo ip link set eth0 master br0
+sudo ip link set eth1 master br0
+
+# włączenie interfejsów.
+sudo ip link set eth0 up
+sudo ip link set eth1 up
+sudo ip link set br0 up
+
+# pobranie adresu IP dla nowo utworzonego mostka.
+sudo dhcpcd br0
+
+
+
+└─$ brctl show
+bridge name     bridge id               STP enabled     interfaces
+br0             8000.cc96e5258a2e       no              eth0
+  
+
+
+time nslookup steamcommunity.com 192.168.48.79

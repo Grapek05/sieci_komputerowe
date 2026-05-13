@@ -1,0 +1,17 @@
+gcc server.c -o http_server
+
+sudo setcap 'cap_net_bind_service=+ep' ./http_server
+
+./http_server 8080
+nc 127.0.0.1 8080
+
+sancho@sancho:~/kosmatka/Sieci/2026-05-13$ ./http_server 8080
+Serwer nasłuchuje na porcie 8080...
+
+sancho@sancho:~$ echo | nc 127.0.0.1 8080
+HTTP/1.0 200 OK
+Content-Type: text/plain; charset=UTF-8
+Connection: close
+Content-Length: 9
+
+246674.33s
