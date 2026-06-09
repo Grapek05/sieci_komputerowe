@@ -1,0 +1,37 @@
+	Pierwszy krok:
+
+Odpalsz serwer w jednym terminalu:
+
+python3 server_tcp.py
+
+	Drugi krok:
+
+Odpalsz pierwszego klienta w drugim terminalu:
+
+python client_tcp.py
+
+Zarejestruj go i zaloguj:
+
+register Jarek tajne679
+login Jarek tajne679
+
+	Trzeci krok:
+
+Odpalsz drugiego klienta w trzecim terminalu:
+
+python client_tcp.py
+
+Zarejestruj go i zaloguj:
+
+register Adam haslo1
+login Adam haslo1
+
+W terminalu Janka od razu zobaczysz notyfikację.
+
+	Czwarty krok:
+
+Wymiana wiadomości:
+
+Janek pisze do wszystkich: msg all Siemanko wszystkim wariatom!
+
+Adam pisze prywatnie do Janka: msg Janek Ej stary, masz pożyczyć dychę?

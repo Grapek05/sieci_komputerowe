@@ -1,0 +1,20 @@
+	Krok pierwszy:
+
+Otwórz pierwszy terminal i uruchom serwer:
+
+python server.py
+
+	Krok drugi:
+
+Otwórz drugi terminal i uruchom pierwszego klienta:
+
+python client.py
+
+	Krok trzeci:
+
+Otwórz trzeci terminal i uruchom drugiego klienta:
+
+python client.py
+
+Pisz wiadomości w terminalach klientów – zobaczysz, że wiadomości natychmiast pojawiają się u drugiego użytkownika,
+poprzedzone jego nickiem. Wpisanie exit lub zamknięcie klienta poprawnie usunie go z pamięci serwera.
